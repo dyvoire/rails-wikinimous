@@ -1,4 +1,7 @@
 class ArticlesController < ApplicationController
+
+require 'kramdown'
+
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -6,7 +9,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    # @article = Article.find(params[:id])
+    @md = Kramdown::Document.new(@article.content).to_html.html_safe
   end
 
   def edit
@@ -22,7 +25,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    article = article.create(article_params)
+    @article = Article.create(article_params)
     redirect_to articles_path
   end
 
