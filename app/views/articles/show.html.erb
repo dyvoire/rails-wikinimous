@@ -1,0 +1,10 @@
+My SHow View:
+
+<br>
+
+<h1><%= @article.title %></h1>
+<p><%= @article.content %></p>
+
+
+<%= link_to "Edit the article", edit_article_path(@article) %>
+<%= link_to "DESTROY the article", article_path(@article), method: :delete %>
